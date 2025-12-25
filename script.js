@@ -1,8 +1,8 @@
 const music = document.getElementById("bg-music");
 
 const playlist = [
-  "assets/song1.mp3",
-  "assets/song2.mp3"
+  "assets/music1.mp3",
+  "assets/music2.mp3"
 ];
 
 let currentTrack = 0;
