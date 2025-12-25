@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Winter Wrapped</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 🎄 Christmas Intro Screen -->
+<div class="intro" id="intro">
+  <div id="snowfall"></div>
+  <div class="intro-content">
+    <h1>Merry Christmas Ju 🎄</h1>
+    <p>Tap to begin</p>
+  </div>
+
+  <!-- 🎶 Background Music -->
+  <audio id="bg-music" preload="auto">
+    <source src="assets/music.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<div class="scene">
+  <div class="trail-layer" id="trail"></div>
+
+  <!-- 🔇 Music Toggle -->
+  <button class="mute-btn" id="muteBtn" aria-label="Toggle music">
+    🔊
+  </button>
+
+  <!-- Falling snow + food -->
+  <div class="fall-layer" id="fall"></div>
+
+  <!-- Ribbon Tree -->
+  <div class="tree-wrap">
+    <div class="star-overlay">⭐</div>
+    <div class="ribbon-tree" id="ribbon"></div>
+  </div>
+
+<!-- Wrapped Card -->
+<div class="wrapped polaroid" id="wrapped">
+  <div class="polaroid-inner">
+
+    <!-- 1. Intro -->
+    <div class="slide active">
+      <h1>Your 2025 Wrapped ❄️</h1>
+      <p class="subtitle">Tap to see your highlights</p>
+    </div>
+
+    <!-- 2. Overall Theme -->
+    <div class="slide">
+      <span class="big">🍰</span>
+      <p class="statline">Overall vibe</p>
+      <h2>Cozy Desserts</h2>
+      <p class="subtitle">Warm, comforting, and sweet</p>
+    </div>
+
+    <!-- 3. Mood -->
+    <div class="slide">
+      <span class="big">✨</span>
+      <p class="statline">Mood of the year</p>
+      <h2>Unrushed</h2>
+      <p class="subtitle">The best moments took their time</p>
+    </div>
+
+    <!-- 4. Sweet Count -->
+    <div class="slide">
+      <span class="big">☕</span>
+      <p class="statline">Sweet moments shared</p>
+      <h2>Desserts</h2>
+      <p class="subtitle">Just enough to make it special</p>
+    </div>
+
+    <!-- 5. Signature Food -->
+    <div class="slide">
+      <span class="big">🥐</span>
+      <p class="statline">Signature food</p>
+      <h2>Croissant</h2>
+      <p class="subtitle">Simple. Classic. Perfect.</p>
+    </div>
+
+    <!-- Pause -->
+    <div class="slide">
+    <span class="big">💌</span>
+    <h2>Thank you</h2>
+    <p class="subtitle">
+      For the small moments that meant a lot
+    </p>
+    </div>
+
+
+    <!-- 6. Taste Profile -->
+    <div class="slide">
+      <span class="big">🧈</span>
+      <p class="statline">Taste profile</p>
+      <h2>Soft & comforting</h2>
+      <p class="subtitle">Nothing too heavy — just right</p>
+    </div>
+
+    <!-- 7. Timing -->
+    <div class="slide">
+      <span class="big">🕯️</span>
+      <p class="statline">Favorite time</p>
+      <h2>Evenings</h2>
+      <p class="subtitle">When everything slowed down</p>
+    </div>
+
+    <!-- 8. Energy -->
+    <div class="slide">
+      <span class="big">🔥</span>
+      <p class="statline">Energy level</p>
+      <h2>Low-key</h2>
+      <p class="subtitle">Quiet moments over loud plans</p>
+    </div>
+
+    <!-- 9. A Pattern -->
+    <div class="slide">
+      <span class="big">🔁</span>
+      <p class="statline">A pattern we noticed</p>
+      <h2>Quality over quantity</h2>
+      <p class="subtitle">Less, but better</p>
+    </div>
+
+    <!-- 10. A Small Win -->
+    <div class="slide">
+      <span class="big">🌱</span>
+      <p class="statline">A small win</p>
+      <h2>Being present</h2>
+      <p class="subtitle">No distractions, no rush</p>
+    </div>
+
+    <!-- 11. A Moment -->
+    <div class="slide">
+      <span class="big">📍</span>
+      <p class="statline">A moment worth keeping</p>
+      <h2>Just being there</h2>
+      <p class="subtitle">No plans. No pressure.</p>
+    </div>
+
+    <!-- 12. What Defined the Year -->
+    <div class="slide">
+      <span class="big">🫶</span>
+      <p class="statline">What defined this year</p>
+      <h2>Comfort</h2>
+      <p class="subtitle">Feeling at ease</p>
+    </div>
+
+    <!-- 13. Looking Ahead -->
+    <div class="slide">
+      <span class="big">✨</span>
+      <p class="statline">Looking ahead</p>
+      <h2>More small adventures</h2>
+      <p class="subtitle">Nothing rushed — just meaningful</p>
+    </div>
+
+    <!-- 14. Closing -->
+    <div class="slide">
+      <span class="big">🎄</span>
+      <h2>Thank you for a wonderful year</h2>
+      <p class="subtitle">Here’s to more moments in 2026</p>
+      <p class="footer">Merry Christmas Ju</p>
+    </div>
+
+    <div class="polaroid-caption">
+      December 2025
+    </div>
+  </div>  
+</div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,368 @@
+:root{
+  --bg-top:#0e2a44;
+  --bg-bottom:#060b14;
+  --card:#fffaf4;
+  --ink:#2e2a26;
+}
+
+/* ================================
+   RESET
+================================ */
+*{ box-sizing:border-box }
+html,body{ height:100% }
+
+body{
+  margin:0;
+  font-family: system-ui, -apple-system;
+  background:
+    radial-gradient(600px 400px at 50% 18%, rgba(120,180,255,.22), transparent 60%),
+    linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+  overflow:hidden;
+}
+
+/* ================================
+   SCENE
+================================ */
+.scene{
+  position:relative;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+}
+
+/* ================================
+   FALLING FOOD + SNOW
+================================ */
+.fall-layer{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+
+.fall{
+  position:absolute;
+  font-size:24px;
+  animation: fall linear forwards;
+  user-select:none;
+}
+
+@keyframes fall{
+  from{ transform:translateY(-60px); opacity:0 }
+  to{ transform:translateY(110vh); opacity:1 }
+}
+
+/* ================================
+   🎄 TREE WRAP (CENTERED CORRECTLY)
+================================ */
+.tree-wrap{
+  position:absolute;
+  top:6%;
+  left:50%;
+  transform:translateX(-50%);
+  width:260px;
+  height:360px;
+  perspective:900px;
+  pointer-events:none;
+  z-index:2;
+}
+
+/* 🌟 Tree Glow */
+.tree-wrap::before{
+  content:"";
+  position:absolute;
+  inset:-60px;
+  background:
+    radial-gradient(circle at center,
+      rgba(255,255,255,.25) 0%,
+      rgba(255,255,255,.15) 25%,
+      rgba(255,255,255,.06) 45%,
+      transparent 70%);
+  filter: blur(30px);
+  z-index:-1;
+}
+
+/* ================================
+   🎄 RIBBON TREE (ANCHOR FIXED)
+================================ */
+.ribbon-tree{
+  position:absolute;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  transform-style:preserve-3d;
+  animation: spin 22s linear infinite;
+}
+
+@keyframes spin{
+  from{ transform:translateX(-50%) rotateY(0deg); }
+  to{ transform:translateX(-50%) rotateY(360deg); }
+}
+
+/* ================================
+   🎄 TREE DOTS (TRUE CIRCLES)
+================================ */
+.tree-dot{
+  position:absolute;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background: var(--dot-color);
+  box-shadow:
+    0 0 6px rgba(255,240,220,.7),
+    0 0 12px rgba(255,240,220,.35);
+  transform-style:preserve-3d;
+}
+
+/* ================================
+   ⭐ Star
+   ================================ */
+.star-overlay{
+  position:absolute;
+  left:50%;
+  bottom: 100%;
+  transform: translate(-50%, 20%);
+  font-size: clamp(22px, 4vw, 30px);
+  filter: drop-shadow(0 0 14px gold);
+  animation: spin 20s linear infinite;
+  pointer-events:none;
+  z-index:3;
+}
+
+@keyframes starSpin{
+  from{ transform:translateX(-50%) rotate(0deg); }
+  to{ transform:translateX(-50%) rotate(360deg); }
+}
+
+/* ================================
+   ✨ POINTER TRAIL
+================================ */
+.trail-layer{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:2;
+}
+
+.trail-dot{
+  position:absolute;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:rgba(255,255,255,.85);
+  box-shadow:0 0 10px rgba(255,255,255,.8);
+  animation: trailFade .9s ease-out forwards;
+}
+
+@keyframes trailFade{
+  from{ opacity:1; transform:scale(1); }
+  to{ opacity:0; transform:scale(2); }
+}
+
+/* ================================
+   🎧 MUTE BUTTON
+================================ */
+.mute-btn{
+  position:absolute;
+  top:16px;
+  right:16px;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:rgba(0,0,0,.4);
+  color:white;
+  font-size:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:10;
+}
+
+/* ================================
+   📸 POLAROID (clean + layered)
+================================ */
+
+.wrapped.polaroid{
+  position:absolute;
+  left:50%;
+  bottom:6%;
+  transform:translateX(-50%) rotate(-2deg);
+  width:min(340px,90vw);
+  background:#fff;
+  padding:14px 14px 44px; /* thick bottom */
+  box-shadow:
+    0 30px 60px rgba(0,0,0,.35),
+    0 8px 16px rgba(0,0,0,.2);
+  z-index:3;
+  animation: polaroidFloat 5s ease-in-out infinite;
+}
+
+@keyframes polaroidFloat{
+  0%,100%{ transform:translateX(-50%) rotate(-2deg) translateY(0); }
+  50%{ transform:translateX(-50%) rotate(-2deg) translateY(-12px); }
+}
+
+/* black “photo area” */
+.polaroid-inner{
+  background:#0b0b0b;
+  padding:18px;
+  border-radius:2px;
+}
+
+/* white “print” card inside black photo */
+.polaroid-print{
+  background:#ffffff;
+  border-radius:8px;
+  padding:22px 18px;
+  min-height:190px;
+  box-shadow:0 12px 26px rgba(0,0,0,.28);
+  transform-style:preserve-3d;
+}
+
+/* ✅ text is back to black (only inside the white print) */
+.polaroid-print,
+.polaroid-print h1,
+.polaroid-print h2,
+.polaroid-print .subtitle,
+.polaroid-print .statline,
+.polaroid-print .footer{
+  color:#221f1c;
+}
+
+/* slides (single source of truth) */
+.slide{ display:none; }
+.slide.active{
+  display:block;
+}
+
+/* flip-in transition on each active slide */
+.slide.active{
+  animation: photoFlip .75s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes photoFlip{
+  from{
+    transform:rotateY(-85deg) translateX(-8px) scale(.98);
+    opacity:0;
+  }
+  to{
+    transform:none;
+    opacity:1;
+  }
+}
+
+/* caption stays on the white frame */
+.polaroid-caption{
+  margin-top:12px;
+  padding-left:6px;
+  font-family:'Mountains of Christmas', cursive;
+  font-size:15px;
+  color:#555;
+  opacity:.9;
+}
+
+/* ================================
+   WRAPPED SLIDES
+================================ */
+.slide{ display:none }
+.slide.active{
+  display:block;
+  animation: pop .6s ease;
+}
+
+@keyframes pop{
+  from{ opacity:0; transform:translateY(20px) scale(.96); }
+  to{ opacity:1; transform:none; }
+}
+
+.big{
+  font-size:48px;
+  display:block;
+  margin-bottom:8px;
+}
+
+.statline{
+  font-size:14px;
+  letter-spacing:.4px;
+  text-transform:uppercase;
+  opacity:.6;
+}
+
+h1,h2{
+  font-family:Georgia, serif;
+  color:var(--ink);
+  margin:6px 0;
+}
+
+.subtitle{
+  font-size:15px;
+  opacity:.7;
+}
+
+.footer{
+  margin-top:14px;
+  font-size:14px;
+  opacity:.7;
+}
+/* ================================
+   🎄 Intro Screen (Red & Festive)
+   ================================ */
+
+.intro{
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(600px 400px at 50% 30%, rgba(255,200,200,.25), transparent 60%),
+    linear-gradient(180deg, #7a0f14, #3b070a);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:10;
+  cursor:pointer;
+  transition: opacity .9s ease, visibility .9s ease;
+}
+
+.intro.hidden{
+  opacity:0;
+  visibility:hidden;
+}
+
+.intro-content{
+  text-align:center;
+  animation: introFloat 3s ease-in-out infinite;
+}
+
+.intro h1{
+  font-family: 'Mountains of Christmas', cursive;
+  font-size:42px;
+  color:#fff6e5;
+  margin:0;
+  letter-spacing:1px;
+  text-shadow:
+    0 2px 10px rgba(0,0,0,.4),
+    0 0 20px rgba(255,200,150,.35);
+}
+
+.intro p{
+  margin-top:16px;
+  font-size:15px;
+  color:rgba(255,240,220,.75);
+}
+
+/* gentle float */
+@keyframes introFloat{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-6px); }
+}
+
+/* Snowfall Container */
+#snowfall {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
