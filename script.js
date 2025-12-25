@@ -1,4 +1,10 @@
+/* ================================
+   🎄 INTRO + MUSIC
+================================ */
+
+const intro = document.getElementById("intro");
 const music = document.getElementById("bg-music");
+const muteBtn = document.getElementById("muteBtn");
 
 const playlist = [
   "assets/music1.mp3",
@@ -7,40 +13,31 @@ const playlist = [
 
 let currentTrack = 0;
 
-/* play first song on intro tap */
-intro.addEventListener("click", () => {
-  music.volume = 0.6;
-  music.src = playlist[currentTrack];
-  music.play().catch(() => {});
-  intro.classList.add("hidden");
-});
+if (intro && music) {
+  intro.addEventListener("click", () => {
+    music.src = playlist[currentTrack];
+    music.volume = 0.6;
+    music.muted = false;
 
-/* when a song ends → play next */
+    music.play().catch(err => {
+      console.warn("Audio blocked:", err);
+    });
+
+    intro.classList.add("hidden");
+
+    if (muteBtn) {
+      muteBtn.style.display = "flex";
+    }
+  });
+}
+
 music.addEventListener("ended", () => {
   currentTrack = (currentTrack + 1) % playlist.length;
   music.src = playlist[currentTrack];
   music.play();
 });
 
-/* 🔇 Mute Button Logic */
-const muteBtn = document.getElementById("muteBtn");
-
-intro.addEventListener("click", () => {
-  if (music) {
-    music.volume = 0.6;
-    music.muted = false;
-    music.play().catch(() => {});
-  }
-
-  // ✅ SHOW THE MUTE BUTTON
-  if (muteBtn) {
-    muteBtn.style.display = "block";
-  }
-
-  intro.classList.add("hidden");
-});
-
-if (muteBtn && music) {
+if (muteBtn) {
   muteBtn.addEventListener("click", () => {
     music.muted = !music.muted;
     muteBtn.textContent = music.muted ? "🔇" : "🔊";
