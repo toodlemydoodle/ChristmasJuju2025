@@ -1,19 +1,25 @@
-/* ================================
-   🎄 Intro + Music Logic
-   ================================ */
-
-const intro = document.getElementById("intro");
 const music = document.getElementById("bg-music");
 
-intro.addEventListener("click", () => {
-  // Start music (must be user-triggered)
-  if (music) {
-    music.volume = 0.6;
-    music.play().catch(() => {});
-  }
+const playlist = [
+  "assets/song1.mp3",
+  "assets/song2.mp3"
+];
 
-  // Fade intro away
+let currentTrack = 0;
+
+/* play first song on intro tap */
+intro.addEventListener("click", () => {
+  music.volume = 0.6;
+  music.src = playlist[currentTrack];
+  music.play().catch(() => {});
   intro.classList.add("hidden");
+});
+
+/* when a song ends → play next */
+music.addEventListener("ended", () => {
+  currentTrack = (currentTrack + 1) % playlist.length;
+  music.src = playlist[currentTrack];
+  music.play();
 });
 
 /* 🔇 Mute Button Logic */
